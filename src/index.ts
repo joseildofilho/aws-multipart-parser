@@ -9,7 +9,7 @@ function getValueIgnoringKeyCase(object: Object, key: string) {
 }
 
 function getBoundary(event: APIGatewayProxyEvent): string {
-    return getValueIgnoringKeyCase(event.headers, 'Content-Type').split('=')[1];
+    return getValueIgnoringKeyCase(event.headers, 'content-type').split('=')[1];
 }
 
 function getBody(event: APIGatewayProxyEvent): string {
@@ -29,9 +29,9 @@ export let parse = (event: APIGatewayProxyEvent, spotText: boolean): MultipartFo
                 result[item.match(/name=".+";/g)[0].slice(6, -2)] = {
                     type: 'file',
                     filename: item.match(/filename=".+"/g)[0].slice(10, -1),
-                    contentType: item.match(/Content-Type:\s.+/g)[0].slice(14),
-                    content: spotText? Buffer.from(item.slice(item.search(/Content-Type:\s.+/g) + item.match(/Content-Type:\s.+/g)[0].length + 4, -4), 'binary'):
-                        item.slice(item.search(/Content-Type:\s.+/g) + item.match(/Content-Type:\s.+/g)[0].length + 4, -4),
+                    contentType: item.match(/content-cype:\s.+/g)[0].slice(14),
+                    content: spotText? Buffer.from(item.slice(item.search(/content-type:\s.+/g) + item.match(/content-type:\s.+/g)[0].length + 4, -4), 'binary'):
+                        item.slice(item.search(/content-type:\s.+/g) + item.match(/content-type:\s.+/g)[0].length + 4, -4),
                 };
             } else if (/name=".+"/g.test(item)){
                 result[item.match(/name=".+"/g)[0].slice(6, -1)] = item.slice(item.search(/name=".+"/g) + item.match(/name=".+"/g)[0].length + 4, -4);
