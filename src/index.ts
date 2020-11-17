@@ -19,7 +19,7 @@ function getBody(event: APIGatewayProxyEvent): string {
     return event.body;
 }
 
-export let parse = (event: APIGatewayProxyEvent, spotText: boolean): MultipartFormData =>  {
+export let parsered = (event: APIGatewayProxyEvent, spotText: boolean): MultipartFormData =>  {
     const boundary = getBoundary(event);
     const result : MultipartFormData = {};
     getBody(event)
